@@ -9,6 +9,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const projects = (await getCollection('work')).sort(
 	(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
 );
+
+const skills = ['Réaliser', 'Optimiser', 'Administrer', 'Gérer', 'Conduire', 'Collaborer'];
+const colors = ['#B80905', '#ED8C51', '#EFBA11', '#8CC850', '#0A215E', '#000000'];
+const textColors = ['#FFFFFF', '#000000', '#000000', '#000000', '#FFFFFF', '#FFFFFF'];
 ---
 
 <BaseLayout
@@ -16,22 +20,147 @@ const projects = (await getCollection('work')).sort(
 	description="Découvrer mes différents projets"
 >
 	<div class="stack gap-20">
-		<main class="wrapper stack gap-8">
+		<main class="wrapper stack gap-8 first-section">
 			<Hero
 				title="Mes Projets"
 				tagline="Vous trouverez ci-dessous mes projets récents pour vous faire une idée de mon expérience passée."
 				align="start"
 			/>
+
+			<div class="filters">
+				<button class="filter-btn active" data-filter="all">
+					Tous les projets
+				</button>
+				{skills.map((skill, i) => (
+					<button
+						class="filter-btn"
+						data-filter={skill}
+						style={`background: ${colors[i]}; color: ${textColors[i]};`}
+					>
+						{skill}
+					</button>
+				))}
+			</div>
+
 			<Grid variant="offset">
-				{
-					projects.map((project) => (
-						<li>
-							<PortfolioPreview project={project} />
-						</li>
-					))
-				}
+				{projects.map((project) => (
+					<li class="project-item" data-tags={JSON.stringify(project.data.tags || [])}>
+						<PortfolioPreview project={project} />
+					</li>
+				))}
 			</Grid>
 		</main>
 		<ContactCTA />
 	</div>
 </BaseLayout>
+
+<style>
+	.filters {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		justify-content: center;
+		margin: 2rem 0;
+	}
+
+	.filter-btn {
+		padding: 0.5rem 1.25rem;
+		border: 1px solid var(--gray-800);
+		border-radius: 999rem;
+		font-size: var(--text-sm);
+		font-weight: 500;
+		cursor: pointer;
+		transition: all 0.2s ease;
+	}
+
+	.filter-btn:hover {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+	}
+
+	.filter-btn.active {
+		box-shadow: var(--shadow-md);
+		border: 2px solid var(--accent-regular);
+	}
+
+	.project-item {
+		transition: opacity 0.3s ease;
+	}
+
+	.project-item.hidden {
+		display: none;
+	}
+</style>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const filterBtns = document.querySelectorAll('.filter-btn');
+		const projectItems = document.querySelectorAll('.project-item');
+		const activeFilters = new Set();
+
+		const urlParams = new URLSearchParams(window.location.search);
+		const skillFromUrl = urlParams.get('skill');
+
+		if (skillFromUrl) {
+			const matchingBtn = Array.from(filterBtns).find(
+				btn => btn.dataset.filter === skillFromUrl
+			);
+			if (matchingBtn) {
+				activeFilters.add(skillFromUrl);
+				matchingBtn.classList.add('active');
+				document.querySelector('.filter-btn[data-filter="all"]')?.classList.remove('active');
+
+				applyFilters();
+			}
+		}
+
+		function applyFilters() {
+			projectItems.forEach(item => {
+				const projectTags = JSON.parse(item.dataset.tags || '[]');
+
+				if (activeFilters.size === 0) {
+					item.classList.remove('hidden');
+				} else {
+					const matches = Array.from(activeFilters).some(activeFilter =>
+						projectTags.some(tag => tag.toLowerCase().includes(activeFilter.toLowerCase()))
+					);
+
+					if (matches) {
+						item.classList.remove('hidden');
+					} else {
+						item.classList.add('hidden');
+					}
+				}
+			});
+		}
+
+		filterBtns.forEach(btn => {
+			btn.addEventListener('click', () => {
+				const filter = btn.dataset.filter;
+
+				if (filter === 'all') {
+					activeFilters.clear();
+					filterBtns.forEach(b => b.classList.remove('active'));
+					btn.classList.add('active');
+				} else {
+					const allBtn = document.querySelector('.filter-btn[data-filter="all"]');
+					allBtn?.classList.remove('active');
+
+					if (activeFilters.has(filter)) {
+						activeFilters.delete(filter);
+						btn.classList.remove('active');
+					} else {
+						activeFilters.add(filter);
+						btn.classList.add('active');
+					}
+
+					if (activeFilters.size === 0) {
+						allBtn?.classList.add('active');
+					}
+				}
+
+				applyFilters();
+			});
+		});
+	});
+</script>

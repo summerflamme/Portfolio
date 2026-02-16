@@ -13,6 +13,7 @@ const textLinks: { label: string; href: string }[] = [
 /** Icon links to social media — edit these with links to your profiles! */
 const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[] = [
 	{ label: 'GitHub', href: 'https://github.com/summerflamme', icon: 'github-logo' },
+	{ label: 'Linkedin', href: 'https://www.linkedin.com/in/robin-gourgues-692065328/', icon: 'linkedin-logo'},
 ];
 
 /** Test if a link is pointing to the current page. */
@@ -135,9 +136,14 @@ const isCurrentPage = (href: string) => {
 </script>
 
 <style>
+
 	nav {
 		z-index: 9999;
-		position: relative;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
 		font-family: var(--font-brand);
 		font-weight: 500;
 		margin-bottom: 3.5rem;

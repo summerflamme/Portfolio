@@ -73,7 +73,7 @@ const skillDetails = {
 
 <BaseLayout>
 	<div class="stack gap-20 lg:gap-48">
-		<div class="wrapper stack gap-8 lg:gap-20">
+		<div class="wrapper stack gap-8 lg:gap-20 first-section">
 			<header class="hero">
 				<Hero
 					title="Bonjour, je suis Robin Gourgues"
@@ -127,7 +127,7 @@ const skillDetails = {
 				<header class="section-header stack gap-2 lg:gap-4">
 					<h3>Compétences</h3>
 					<p>
-						Mes 3 ans a l'IUT mon permis de développer ses 6 compétences
+						Mes 3 ans à l'IUT m'ont permis de développer ces 6 compétences
 					</p>
 				</header>
 
@@ -153,8 +153,8 @@ const skillDetails = {
 						<div id="modal-body"></div>
 					<div class="cta modal-cta">
 						<br>
-						<CallToAction href="/work/">
-							Voir les projets liée
+						<CallToAction href=" " id="modal-link">
+							Voir les projets liés
 							<Icon icon="arrow-right" size="1.2em" />
 						</CallToAction>
 					</div>
@@ -401,6 +401,7 @@ const skillDetails = {
 		const modal = document.getElementById('skill-modal');
 		const modalTitle = document.getElementById('modal-title');
 		const modalBody = document.getElementById('modal-body');
+		const modalLink = document.querySelector('.modal-cta a'); // Sélectionne le lien dans le modal
 		const closeBtn = document.querySelector('.close');
 		const cards = document.querySelectorAll('.mention-card');
 
@@ -409,6 +410,12 @@ const skillDetails = {
 				const skill = card.dataset.skill;
 				modalTitle.textContent = skill;
 				modalBody.innerHTML = skillDetails[skill] || 'Détails à venir...';
+
+				// Met à jour le lien avec le paramètre skill
+				if (modalLink) {
+					modalLink.setAttribute('href', `/work/?skill=${encodeURIComponent(skill)}`);
+				}
+
 				modal.style.display = 'block';
 			});
 		});
@@ -423,5 +430,6 @@ const skillDetails = {
 			}
 		});
 	});
-	
+
+
 </script>

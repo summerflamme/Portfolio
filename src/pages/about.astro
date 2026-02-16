@@ -5,18 +5,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="A propos de moi" description="Ma présentation perso">
-	<div class="stack gap-20">
+	<div class="stack gap-20 first-section">
 		<main class="wrapper about">
 			<Hero
 				title="A propos de moi"
 				tagline=""
 			>
+				<div class="flex justify-center">
 				<img
-					width="1553"
-					height="873"
-					src="/assets/at-work.jpg"
+					width="700"
+					height="400"
+					src="/assets/at-work.webp"
 					alt="Jeanine White at work with a colleague"
 				/>
+				</div>
 			</Hero>
 
 			<section>
@@ -60,15 +62,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 						<img src="../../public/assets/php.webp"/>
 						<img src="../../public/assets/ts.webp"/>
 					<br><br>
-					<h3> Framework</h3>
+					<h3>Framework</h3>
 						<img src="../../public/assets/spring-boot.webp"/>
 						<img src="../../public/assets/symfony.webp"/>
 						<img src="../../public/assets/react.webp"/>
 						<img src="../../public/assets/vue.webp"/>
 					<h3>Base de données</h3>
-						<img src="../../public/assets/postgre.png"/>
+						<img src="../../public/assets/postgre.webp"/>
 						<img src="../../public/assets/mysql.webp"/>
-
 				</div>
 			</section>
 		</main>
