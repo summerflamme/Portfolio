@@ -4,12 +4,12 @@ import Hero from '../components/Hero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="About | Jeanine White" description="About Jeanine White Lorem Ipsum">
+<BaseLayout title="A propos de moi" description="Ma présentation perso">
 	<div class="stack gap-20">
 		<main class="wrapper about">
 			<Hero
-				title="About"
-				tagline="Thanks for stopping by. Read below to learn more about myself and my background."
+				title="A propos de moi"
+				tagline=""
 			>
 				<img
 					width="1553"
@@ -20,38 +20,55 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 			</Hero>
 
 			<section>
-				<h2 class="section-title">Background</h2>
+				<h2 class="section-title">Mon parcours Scolaire</h2>
 				<div class="content">
-					<p>
-						Lorem ipsum dolor sit amet, <a href="https://astro.build/">Astro</a> makes people happy. Sed
-						do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin nibh nisl condimentum
-						id venenatis a condimentum vitae. Dapibus ultrices in iaculis nunc. Arcu odio ut sem nulla
-						pharetra diam sit amet. Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare.
-					</p>
-					<p>
-						Arcu dui vivamus arcu felis bibendum ut tristique et egestas. Eget gravida cum sociis
-						natoque penatibus. Cras fermentum odio eu feugiat pretium nibh. Proin nibh nisl
-						condimentum id venenatis. Porta nibh venenatis cras sed felis eget velit. Id diam vel
-						quam elementum pulvinar etiam non.
-					</p>
-					<p>
-						Ultrices tincidunt arcu non sodales neque sodales ut. Sed enim ut sem viverra aliquet
-						eget sit amet. Lacus luctus accumsan tortor posuere ac ut consequat semper viverra.
-						Viverra accumsan in nisl nisi scelerisque eu ultrices. In massa tempor nec feugiat nisl
-						pretium fusce.
-					</p>
+					<div class="timeline">
+						<div class="timeline-item">
+							<span class="year-badge">2023 - 2026</span>
+							<div class="education-card">
+								<h3>BUT Informatique</h3>
+								<p class="school">IUT Blagnac, Toulouse</p>
+							</div>
+						</div>
+						<div class="timeline-item">
+							<span class="year-badge">2021 - 2023</span>
+							<div class="education-card">
+								<h3>Baccalauréat STI2D</h3>
+								<p class="school">Lycée polyvalent Stephane Hessel, Toulouse</p>
+								<p class="mention">Mention Assez Bien</p>
+							</div>
+						</div>
+					</div>
 				</div>
 			</section>
 			<section>
-				<h2 class="section-title">Education</h2>
+				<h2 class="section-title">Parcours Professionnel</h2>
 				<div class="content">
-					<p>Corporis voluptates tenetur laudantium.</p>
+					<span class="year-badge"> 03/2025 - 05/2025</span>
+					<div class="education-card">
+						<h3>Stage développeur web / logiciel</h3>
+						<p class="school">Handy Sitter</p>
+						<p class="mention">Mise à jour de leur site internet, création d'une application de gestion bureautique.</p>
+					</div>
 				</div>
 			</section>
 			<section>
-				<h2 class="section-title">Skills</h2>
+				<h2 class="section-title">Hard Skills</h2>
 				<div class="content">
-					<p>officia unde omnis</p>
+					<h3>Langages</h3>
+						<img src="../../public/assets/java.webp"/>
+						<img src="../../public/assets/php.webp"/>
+						<img src="../../public/assets/ts.webp"/>
+					<br><br>
+					<h3> Framework</h3>
+						<img src="../../public/assets/spring-boot.webp"/>
+						<img src="../../public/assets/symfony.webp"/>
+						<img src="../../public/assets/react.webp"/>
+						<img src="../../public/assets/vue.webp"/>
+					<h3>Base de données</h3>
+						<img src="../../public/assets/postgre.png"/>
+						<img src="../../public/assets/mysql.webp"/>
+
 				</div>
 			</section>
 		</main>
@@ -116,4 +133,79 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 			font-size: var(--text-lg);
 		}
 	}
+
+	.education-card {
+		background: var(--gray-700);
+		border-radius: 1rem;
+		padding: 2rem;
+		margin-bottom: 1.5rem;
+		box-shadow: var(--shadow-md);
+		position: relative;
+	}
+
+
+	.year-badge {
+		display: inline-block;
+		background: var(--accent-regular);
+		color: white;
+		padding: 0.5rem 1rem;
+		border-radius: 2rem;
+		font-weight: bold;
+		font-size: var(--text-sm);
+		margin-bottom: 1rem;
+		position: relative;
+	}
+
+
+	.year-badge::before {
+		content: '';
+		position: absolute;
+		left: -2.5rem;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 18px;
+		height: 18px;
+		border-radius: 50%;
+		background: white;
+		border: 4px solid var(--gray-999);
+		z-index: 1;
+	}
+
+	.education-card h3 {
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+		margin: 0.5rem 0;
+	}
+
+	.education-card .school {
+		color: var(--gray-200);
+		margin: 0.5rem 0;
+		font-size: var(--text-base);
+	}
+
+	.education-card .mention {
+		color: var(--gray-400);
+		font-weight: 600;
+		margin-top: 0.5rem;
+	}
+	.timeline {
+		position: relative;
+		padding-left: 2.1rem;
+	}
+	.timeline::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		width: 3px;
+		background: var(--accent-regular);
+	}
+
+	.timeline-item {
+		position: relative;
+		margin-bottom: 2rem;
+	}
+
+
 </style>

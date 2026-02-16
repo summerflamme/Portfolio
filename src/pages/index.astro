@@ -17,6 +17,55 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const projects = (await getCollection('work'))
 	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
 	.slice(0, 4);
+const skills = ['Réaliser', 'Optimiser', 'Administrer', 'Gérer', 'Conduire', 'Collaborer'];
+const colors = ['#B80905', '#ED8C51', '#EFBA11', '#8CC850', '#0A215E', '#000000'];
+const textColors = ['#FFFFFF', '#000000', '#000000', '#000000', '#FFFFFF', '#FFFFFF'];
+
+const skillDetails = {
+	'Réaliser': 'Développer : c\'est-à-dire concevoir, coder, tester et intégrer une solution informatique pour un client.<br>' +
+		'<ul>' +
+		'<li>en respectant les besoins décrits par le client</li>' +
+		'<li>en appliquant les principes algorithmiques</li>' +
+		'<li>en veillant à la qualité du code et à sa documentation</li>' +
+		'<li>en choisissant les ressources techniques appropriées</li>' +
+		'</ul>',
+	'Optimiser': 'Proposer des applications informatiques optimisées en fonction de critères spécifiques : temps d\'exécution, précision, consommation de ressources…<br>' +
+		'<ul>' +
+		'<li>en formalisant et modélisant des situations complexes</li>' +
+		'<li>en recensant les algorithmes et les structures de données usuels</li>' +
+		'<li>en s\'appuyant sur des schémas de raisonnement</li>' +
+		'<li>en justifiant les choix et validant les résultats</li>' +
+		'</ul>',
+	'Administrer': 'Installer, configurer, mettre à disposition, maintenir en conditions opérationnelles des infrastructures, des services et des réseaux et optimiser le système informatique d\'une organisation.<br>' +
+		'<ul>' +
+		'<li>en sécurisant le système d\'information</li>' +
+		'<li>en appliquant les normes en vigueur et les bonnes pratiques architecturales et de sécurité</li>' +
+		'<li>en offrant une qualité de service optimale</li>' +
+		'<li>en assurant la continuité d\'activité</li>' +
+		'</ul>',
+	'Gérer': 'Concevoir, gérer, administrer et exploiter les données de l\'entreprise et mettre à disposition toutes les informations pour un bon pilotage de l\'entreprise.<br>' +
+		'<ul>' +
+		'<li>en respectant les réglementations sur le respect de la vie privée et la protection des données personnelles</li>' +
+		'<li>en respectant les enjeux économiques, sociétaux et écologiques de l\'utilisation du stockage de données, ainsi que les différentes infrastructures (data centers, cloud, etc.)</li>' +
+		'<li>en s\'appuyant sur des bases mathématiques</li>' +
+		'<li>en assurant la cohérence et la qualité</li>' +
+		'</ul>',
+	'Conduire': 'Satisfaire les besoins des utilisateurs au regard de la chaîne de valeur du client, organiser et piloter un projet informatique avec des méthodes classiques ou agiles.<br>' +
+		'<ul>' +
+		'<li>en communiquant efficacement avec les différents acteurs d\'un projet</li>' +
+		'<li>en respectant les règles juridiques et les normes en vigueur</li>' +
+		'<li>en sensibilisant à une gestion éthique, responsable, durable et interculturelle</li>' +
+		'<li>en adoptant une démarche proactive, créative et critique</li>' +
+		'</ul>',
+	'Collaborer': 'Acquérir, développer et exploiter les aptitudes nécessaires pour travailler efficacement dans une équipe informatique.<br>' +
+		'<ul>' +
+		'<li>en inscrivant sa démarche au sein d\'une équipe pluridisciplinaire</li>' +
+		'<li>en accompagnant la mise en œuvre des évolutions informatiques</li>' +
+		'<li>en veillant au respect des contraintes juridiques</li>' +
+		'<li>en développant une communication efficace et collaborative</li>' +
+		'</ul>'
+};
+
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/basics/astro-components/
@@ -27,22 +76,20 @@ const projects = (await getCollection('work'))
 		<div class="wrapper stack gap-8 lg:gap-20">
 			<header class="hero">
 				<Hero
-					title="Hello, my name is Jeanine White"
-					tagline="I am a Creative Developer who is currently based in Portland, Oregon."
+					title="Bonjour, je suis Robin Gourgues"
+					tagline="Etudiant en 3ème année de BUT Info à l'IUT de Blagnac."
 					align="start"
 				>
 					<div class="roles">
-						<Pill><Icon icon="code" size="1.33em" /> Developer</Pill>
-						<Pill><Icon icon="microphone-stage" size="1.33em" /> Speaker</Pill>
-						<Pill><Icon icon="pencil-line" size="1.33em" /> Writer</Pill>
+						<button style="background: transparent ;border: none"><Pill><Icon icon="telecharger-logo" size="1.33em" /> Télécharger mon CV</Pill></button>
 					</div>
 				</Hero>
 
 				<img
-					alt="Jeanine White smiling in a red plaid shirt and tortoise shell glasses"
+					alt="Photo PPP"
 					width="480"
 					height="620"
-					src="/assets/portrait.jpg"
+					src="/assets/portraitMoi.webp"
 				/>
 			</header>
 
@@ -52,8 +99,8 @@ const projects = (await getCollection('work'))
 		<main class="wrapper stack gap-20 lg:gap-48">
 			<section class="section with-background with-cta">
 				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Selected Work</h3>
-					<p>Take a look below at some of my featured work for clients from the past few years.</p>
+					<h3>Quelques projets</h3>
+					<p>Vous pouvez voir ci-dessous à certains de mes projets réalisés durant ces dernières années.</p>
 				</header>
 
 				<div class="gallery">
@@ -70,7 +117,7 @@ const projects = (await getCollection('work'))
 
 				<div class="cta">
 					<CallToAction href="/work/">
-						View All
+						Tous voir
 						<Icon icon="arrow-right" size="1.2em" />
 					</CallToAction>
 				</div>
@@ -78,23 +125,40 @@ const projects = (await getCollection('work'))
 
 			<section class="section with-background bg-variant">
 				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Mentions</h3>
+					<h3>Compétences</h3>
 					<p>
-						I have been fortunate enough to receive praise for my work in several publications. Take
-						a look below to learn more.
+						Mes 3 ans a l'IUT mon permis de développer ses 6 compétences
 					</p>
 				</header>
 
 				<div class="gallery">
-					<Grid variant="small">
-						{
-							['Medium', 'BuzzFeed', 'The Next Web', 'awwwards.', 'TechCrunch'].map((brand) => (
-								<li class="mention-card">
-									<p>{brand}</p>
-								</li>
-							))
-						}
-					</Grid>
+				<Grid variant="small">
+					{
+						skills.map((brand, i) => (
+							<li class="mention-card"
+								style={`--card-bg: ${colors[i % colors.length]}; --card-color: ${textColors[i % textColors.length]};`}
+								data-skill={brand}
+								data-index={i}>
+								<p>{brand}</p>
+							</li>
+						))
+					}
+				</Grid>
+			</div>
+
+				<div id="skill-modal" class="modal">
+					<div class="modal-content">
+						<span class="close">&times;</span>
+						<h2 id="modal-title"></h2>
+						<div id="modal-body"></div>
+					<div class="cta modal-cta">
+						<br>
+						<CallToAction href="/work/">
+							Voir les projets liée
+							<Icon icon="arrow-right" size="1.2em" />
+						</CallToAction>
+					</div>
+					</div>
 				</div>
 			</section>
 		</main>
@@ -135,6 +199,15 @@ const projects = (await getCollection('work'))
 			margin-top: 0.5rem;
 			display: flex;
 			gap: 0.5rem;
+		}
+
+		.roles button {
+			cursor: pointer;
+			transition: transform 0.2s ease;
+		}
+
+		.roles button:hover {
+			transform: translateY(2px);
 		}
 
 		.hero img {
@@ -235,8 +308,8 @@ const projects = (await getCollection('work'))
 		text-align: center;
 		border: 1px solid var(--gray-800);
 		border-radius: 1.5rem;
-		color: var(--gray-300);
-		background: var(--gradient-subtle);
+		color: var(--card-color);
+		background: var(--card-bg);
 		box-shadow: var(--shadow-sm);
 	}
 
@@ -246,4 +319,109 @@ const projects = (await getCollection('work'))
 			height: 9.5rem;
 		}
 	}
+
+	.modal {
+		display: none;
+		position: fixed;
+		z-index: 1000;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.7);
+	}
+
+	.modal-content {
+		background-color: var(--gray-999);
+		margin: 10% auto;
+		padding: 2rem;
+		border: 1px solid var(--gray-800);
+		border-radius: 1.5rem;
+		width: 90%;
+		max-width: 600px;
+		color: var(--gray-200);
+	}
+
+	.close {
+		color: var(--gray-400);
+		float: right;
+		font-size: 2rem;
+		font-weight: bold;
+		cursor: pointer;
+	}
+
+	.close:hover {
+		color: var(--gray-100);
+	}
+
+	.mention-card {
+		cursor: pointer;
+		transition: transform 0.2s ease;
+	}
+
+	.mention-card:hover {
+		transform: scale(1.05);
+	}
+
+	.modal-cta {
+		transform: scale(0.65);
+		transform-origin: center;
+	}
+
+	#modal-body ul {
+		margin: 1rem 0;
+		padding-left: 1.5rem;
+	}
+
+	#modal-body li {
+		margin: 0.5rem 0;
+		line-height: 1.6;
+	}
+
 </style>
+
+<script define:vars={{ skillDetails }}>
+	document.addEventListener('DOMContentLoaded', () => {
+		const downloadButton = document.querySelector('.roles > button');
+
+		if (downloadButton) {
+			downloadButton.addEventListener('click', () => {
+				// Crée un lien temporaire
+				const link = document.createElement('a');
+				link.href = '/cv.pdf';
+				link.download = 'CV_Robin_Gourgues.pdf';
+				document.body.appendChild(link);
+				link.click();
+				document.body.removeChild(link);
+			});
+		}
+	});
+
+	document.addEventListener('DOMContentLoaded', () => {
+		const modal = document.getElementById('skill-modal');
+		const modalTitle = document.getElementById('modal-title');
+		const modalBody = document.getElementById('modal-body');
+		const closeBtn = document.querySelector('.close');
+		const cards = document.querySelectorAll('.mention-card');
+
+		cards.forEach(card => {
+			card.addEventListener('click', () => {
+				const skill = card.dataset.skill;
+				modalTitle.textContent = skill;
+				modalBody.innerHTML = skillDetails[skill] || 'Détails à venir...';
+				modal.style.display = 'block';
+			});
+		});
+
+		closeBtn.addEventListener('click', () => {
+			modal.style.display = 'none';
+		});
+
+		window.addEventListener('click', (e) => {
+			if (e.target === modal) {
+				modal.style.display = 'none';
+			}
+		});
+	});
+	
+</script>
