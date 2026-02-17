@@ -15,7 +15,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 				<img
 					width="700"
 					height="400"
-					src="/assets/at-work.webp"
+					src={`${import.meta.env.BASE_URL}/assets/at-work.webp`}
 					alt="Jeanine White at work with a colleague"
 				/>
 				</div>
@@ -58,18 +58,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 				<h2 class="section-title">Hard Skills</h2>
 				<div class="content">
 					<h3>Langages</h3>
-						<img src="../../public/assets/java.webp"/>
-						<img src="../../public/assets/php.webp"/>
-						<img src="../../public/assets/ts.webp"/>
+						<img src={`${import.meta.env.BASE_URL}/assets/java.webp`}/>
+						<img src={`${import.meta.env.BASE_URL}/assets/php.webp`}/>
+						<img src={`${import.meta.env.BASE_URL}/assets/ts.webp`}/>
 					<br><br>
 					<h3>Framework</h3>
-						<img src="../../public/assets/spring-boot.webp"/>
-						<img src="../../public/assets/symfony.webp"/>
-						<img src="../../public/assets/react.webp"/>
-						<img src="../../public/assets/vue.webp"/>
+						<img src={`${import.meta.env.BASE_URL}/assets/spring-boot.webp`}/>
+						<img src={`${import.meta.env.BASE_URL}/assets/symfony.webp`}/>
+						<img src={`${import.meta.env.BASE_URL}/assets/react.webp`}/>
+						<img src={`${import.meta.env.BASE_URL}/assets/vue.webp`}/>
 					<h3>Base de données</h3>
-						<img src="../../public/assets/postgre.webp"/>
-						<img src="../../public/assets/mysql.webp"/>
+						<img src={`${import.meta.env.BASE_URL}/assets/postgre.webp`}/>
+						<img src={`${import.meta.env.BASE_URL}/assets/mysql.webp`}/>
 				</div>
 			</section>
 		</main>

@@ -5,9 +5,9 @@ import ThemeToggle from './ThemeToggle.astro';
 
 /** Main menu items */
 const textLinks: { label: string; href: string }[] = [
-	{ label: 'Accueil', href: '/' },
-	{ label: 'Mes Projets', href: '/work/' },
-	{ label: 'A propos de moi ', href: '/about/' },
+	{ label: 'Accueil', href: `${import.meta.env.BASE_URL}/` },
+	{ label: 'Mes Projets', href: `${import.meta.env.BASE_URL}/work/` },
+	{ label: 'A propos de moi ', href: `${import.meta.env.BASE_URL}/about/` },
 ];
 
 /** Icon links to social media — edit these with links to your profiles! */
@@ -27,7 +27,7 @@ const isCurrentPage = (href: string) => {
 
 <nav>
 	<div class="menu-header">
-		<a href="/" class="site-title">
+		<a href={`${import.meta.env.BASE_URL}/`} class="site-title">
 			<Icon icon="terminal-window" color="var(--accent-regular)" size="1.6em" gradient />
 			Robin Gourgues
 		</a>
