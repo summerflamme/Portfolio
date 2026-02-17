@@ -21,6 +21,8 @@ const skills = ['Réaliser', 'Optimiser', 'Administrer', 'Gérer', 'Conduire', '
 const colors = ['#B80905', '#ED8C51', '#EFBA11', '#8CC850', '#0A215E', '#000000'];
 const textColors = ['#FFFFFF', '#000000', '#000000', '#000000', '#FFFFFF', '#FFFFFF'];
 
+const BASE_URL = import.meta.env.BASE_URL;
+
 const skillDetails = {
 	'Réaliser': 'Développer : c\'est-à-dire concevoir, coder, tester et intégrer une solution informatique pour un client.<br>' +
 		'<ul>' +
@@ -380,10 +382,9 @@ const skillDetails = {
 
 </style>
 
-<script define:vars={{ skillDetails }}>
+<script define:vars={{ skillDetails, BASE_URL }}>
 	document.addEventListener('DOMContentLoaded', () => {
 		const downloadButton = document.querySelector('.roles > button');
-		const BASE_URL = import.meta.env.BASE_URL;
 
 		if (downloadButton) {
 			downloadButton.addEventListener('click', () => {
@@ -405,7 +406,6 @@ const skillDetails = {
 		const modalLink = document.querySelector('.modal-cta a'); // Sélectionne le lien dans le modal
 		const closeBtn = document.querySelector('.close');
 		const cards = document.querySelectorAll('.mention-card');
-		const BASE_URL = import.meta.env.BASE_URL;
 
 		cards.forEach(card => {
 			card.addEventListener('click', () => {

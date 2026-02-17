@@ -1,7 +1,7 @@
 ---
 title: DailyBank
 publishDate: 2020-03-04 00:00:00
-img: /assets/saeS2.webp
+img: /Portfolio/assets/saeS2.webp
 img_alt: Image de la page d'accueil de l'app
 description: |
   Nous avons développer une application de gestion d'agence bancaire

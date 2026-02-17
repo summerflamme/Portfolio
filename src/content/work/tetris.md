@@ -1,7 +1,7 @@
 ---
 title: Tetris
 publishDate: 2019-12-01 00:00:00
-img: /assets/tetris.webp
+img: /Portfolio/assets/tetris.webp
 img_alt: Image du jeu tetris
 description: |
   Dans le cadre d’un projet personnel, j’ai développé une version complète du célèbre jeu Tetris en Java.

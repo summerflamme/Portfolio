@@ -1,7 +1,7 @@
 ---
 title: Handy-Sitter 
 publishDate: 2019-10-02 00:00:00
-img: /assets/handysitter.webp
+img: /Portfolio/assets/handysitter.webp
 img_alt: Soft pink and baby blue water ripples together in a subtle texture.
 description: |
   J'ai développer une application bureautique de gestion d'une association

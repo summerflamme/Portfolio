@@ -1,7 +1,7 @@
 ---
 title: Styles & Semmelles   
 publishDate: 2020-03-02 00:00:00
-img: /assets/saeS3.webp
+img: /Portfolio/assets/saeS3.webp
 img_alt: Image de la page d'accueil de l'app
 description: |
   Nous avons developper une site Web e-commerces 

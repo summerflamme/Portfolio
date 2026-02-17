@@ -1,7 +1,7 @@
 ---
 title: Bajon Consulting
 publishDate: 2019-12-01 00:00:00
-img: /assets/saeS5.webp
+img: /Portfolio/assets/saeS5.webp
 img_alt: Image du formulaire de connexion de l'app 
 description: |
   Nous avons conçus une application web d'audit pour un client
